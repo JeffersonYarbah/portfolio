@@ -303,8 +303,10 @@ function initParallax() {
 }
 
 /* ---------------------------------------------------------
-   Contact form — client-side validation + async submit
-   + success animation (falls back to normal POST if fetch fails)
+   Contact form — client-side validation + a real, native
+   submission to FormSubmit (see note below), with a
+   redirect-back trick so the in-page success animation still
+   shows up after FormSubmit sends the visitor back to us.
 --------------------------------------------------------- */
 function initContactForm() {
     const form = document.getElementById('contactForm');
@@ -317,6 +319,7 @@ function initContactForm() {
         message: form.querySelector('#cf-message'),
     };
     const submitBtn = form.querySelector('.submit-btn');
+    const nextField = form.querySelector('#cf-next');
 
     const validators = {
         name: (val) => val.trim().length >= 2,
@@ -342,7 +345,15 @@ function initContactForm() {
         });
     });
 
-    form.addEventListener('submit', async (e) => {
+    // Point FormSubmit's "_next" redirect back at this exact page (with a
+    // ?sent=true flag) so that after a successful submission the visitor
+    // lands back here instead of on FormSubmit's generic confirmation page.
+    if (nextField) {
+        const cleanUrl = window.location.origin + window.location.pathname;
+        nextField.value = `${cleanUrl}?sent=true#contact`;
+    }
+
+    form.addEventListener('submit', (e) => {
         const allValid = Object.keys(fields)
             .map(validateField)
             .every(Boolean);
@@ -353,54 +364,28 @@ function initContactForm() {
             return;
         }
 
-        // Pages opened directly from disk (file:// — e.g. double-clicking
-        // index.html) can't reliably fetch() a remote endpoint: browsers
-        // treat the page as a "null" origin and silently fail the request.
-        // In that case, skip the fancy AJAX flow and let the browser do a
-        // normal form submission — FormSubmit's own confirmation page will
-        // load, which is the most reliable way to confirm delivery.
-        // Once the site is hosted on a real http(s) domain, the AJAX flow
-        // below runs instead and shows the in-page success message.
-        if (window.location.protocol === 'file:') {
-            return; // allow the default, native form submission to proceed
-        }
-
-        e.preventDefault();
+        // Deliberately NOT intercepted with fetch()/AJAX here. FormSubmit
+        // needs a real, full-page form submission — both to work reliably
+        // on every host (file://, GitHub Pages, etc.) and, importantly, to
+        // complete its one-time "confirm this address" step the very first
+        // time a given email/domain combination is used. AJAX submissions
+        // can silently skip that confirmation step and never activate.
+        // So: let the browser submit normally, then show the success state
+        // when FormSubmit redirects the visitor back (see below).
         submitBtn.classList.add('loading');
-
-        // FormSubmit requires the dedicated /ajax/ endpoint for fetch/XHR
-        // submissions (the plain formsubmit.co/EMAIL endpoint only works for
-        // a real browser form navigation) — swap "formsubmit.co/EMAIL" for
-        // "formsubmit.co/ajax/EMAIL" automatically, based on the form's action.
-        const ajaxAction = form.action.replace(
-            'formsubmit.co/',
-            'formsubmit.co/ajax/'
-        );
-
-        const payload = Object.fromEntries(new FormData(form).entries());
-
-        try {
-            const response = await fetch(ajaxAction, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-
-            if (response.ok) {
-                form.classList.add('sent');
-                form.reset();
-            } else {
-                form.submit(); // fallback to a normal submission (plain endpoint)
-            }
-        } catch (err) {
-            form.submit(); // network / CORS fallback
-        } finally {
-            submitBtn.classList.remove('loading');
-        }
     });
+
+    // If we've just been redirected back here after a successful
+    // FormSubmit submission, show the in-page success animation.
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('sent') === 'true') {
+        form.classList.add('sent');
+        params.delete('sent');
+        const query = params.toString();
+        const cleanUrl =
+            window.location.pathname + (query ? `?${query}` : '') + window.location.hash;
+        window.history.replaceState({}, document.title, cleanUrl);
+    }
 }
 
 /* ---------------------------------------------------------
