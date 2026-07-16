@@ -4,10 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jefferson T. Yarbah Portfolio</title>
+    <meta name="description" content="Jefferson T. Yarbah — Full Stack Developer with a strong background in Cyber Security. Explore skills, education, certifications and ways to connect.">
+    <meta name="theme-color" content="#0d0d0d">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Jefferson T. Yarbah | Full Stack Developer">
+    <meta property="og:description" content="Results-oriented Full Stack Developer and Cyber Security enthusiast. View skills, education and get in touch.">
+    <meta property="og:type" content="website">
+
+    <title>Jefferson T. Yarbah | Portfolio</title>
+
+    <!-- favicon (inline monogram, no external asset needed) -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23111'/%3E%3Ctext x='32' y='42' font-family='Poppins,Arial,sans-serif' font-size='26' font-weight='700' fill='%23ff0000' text-anchor='middle'%3EJY%3C/text%3E%3C/svg%3E">
 
     <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- preconnect for faster font loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- custom css file link  -->
     <link rel="stylesheet" href="style.css">
@@ -16,285 +31,444 @@
 
 <body>
 
-    <!-- header section starts  -->
+    <!-- skip link for accessibility -->
+    <a href="#home" class="skip-link">Skip to content</a>
 
-    <header>
+    <!-- preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+        <div class="preloader-mark">JY</div>
+        <div class="preloader-bar"><span></span></div>
+    </div>
+
+    <!-- scroll progress indicator -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- header / sidebar navigation -->
+    <header id="siteHeader">
 
         <div class="user">
-            <img src="photo.jpg" alt="">
+            <div class="user-img-wrap">
+                <img src="photo.jpg" alt="Portrait of Jefferson T. Yarbah" loading="lazy">
+            </div>
             <h3 class="name">Jefferson T. Yarbah</h3>
             <p class="post">Full Stack Developer</p>
         </div>
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Primary">
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#home" class="nav-link active" data-section="home">Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+                <li><a href="#education" class="nav-link" data-section="education">Education</a></li>
+                <li><a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
             </ul>
         </nav>
 
     </header>
 
-    <!-- header section ends -->
+    <!-- mobile menu toggle -->
+    <button id="menu" class="menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteHeader">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
+    <div class="menu-overlay" id="menuOverlay"></div>
 
-    <div id="menu" class="fas fa-bars"></div>
+    <main>
 
-    <!-- home section starts  -->
+        <!-- home section starts  -->
 
-    <section class="home" id="home">
+        <section class="home" id="home">
 
-        <h3>HI THERE !</h3>
-        <h1>I'M <span>Jefferson T. Yarbah</span></h1>
-        <p>Results-oriented Programmer. A Graduate of Computer Applications from REVA University, 
-            Bengaluru-India. With experience working  accross the full stack of software development
-            together with a strong background in various programming languages and proven ability to 
-            troubleshoot complex issues and improve system performance. I am looking for a role where 
-            I can grow and continue to learn from other experienced team members.
-        </p>
-        <a href="#about"><button class="btn">About Me <i class="fas fa-user"></i></button></a>
+            <!-- animated network/particle background -->
+            <canvas id="networkCanvas" class="network-canvas" aria-hidden="true"></canvas>
 
-    </section>
-
-    <!-- home section ends -->
-    <!-- about section starts  -->
-
-    <section class="about" id="about">
-
-        <h1 class="heading"> <span>about</span> me </h1>
-
-        <div class="row">
-
-            <div class="info">
-                <h3> <span> name : </span> Jefferson T. Yarbah </h3>
-                <h3> <span> gender : </span> Male </h3>
-                <h3> <span> Nationality : </span> Liberian </h3>
-                <h3> <span> qualification : </span>BCA Degree / BIT Candidate </h3>
-                <h3> <span> post : </span> Full Stack Developer </h3>
-                <h3> <span> language : </span> English </h3>
-                <a href="Updated Resume.pdf"><button class="btn"> download CV <i class="fas fa-download"></i> </button></a>
+            <!-- floating background shapes -->
+            <div class="floating-shapes" aria-hidden="true">
+                <span class="shape shape-1"></span>
+                <span class="shape shape-2"></span>
+                <span class="shape shape-3"></span>
+                <span class="shape shape-4"></span>
             </div>
-            <div class="counter">
-                <div class="box">
-                    <span>4+</span>
-                    <h3>Years Of Experience</h3>
+
+            <div class="home-content">
+                <h3 class="reveal-text">HI THERE !</h3>
+                <h1 class="reveal-text hero-title">I'M <span class="typed-name">Jefferson T. Yarbah</span></h1>
+                <p class="reveal-text role-line"><span id="typedRole"></span><span class="type-cursor" aria-hidden="true">|</span></p>
+                <p class="reveal-text">Results-oriented Programmer. A Graduate of Computer Applications from REVA University,
+                    Bengaluru-India. With experience working accross the full stack of software development
+                    together with a strong background in various programming languages and proven ability to
+                    troubleshoot complex issues and improve system performance. I am looking for a role where
+                    I can grow and continue to learn from other experienced team members.
+                </p>
+                <a href="#about" class="reveal-text"><button class="btn ripple">About Me <i class="fas fa-user"></i></button></a>
+            </div>
+
+            <a href="#about" class="scroll-cue" aria-hidden="true"><i class="fas fa-chevron-down"></i></a>
+
+        </section>
+
+        <!-- home section ends -->
+        <!-- about section starts  -->
+
+        <section class="about" id="about">
+
+            <h2 class="heading reveal-up"> <span>about</span> me </h2>
+
+            <div class="row">
+
+                <div class="info reveal-left">
+                    <h3> <span> name : </span> Jefferson T. Yarbah </h3>
+                    <h3> <span> gender : </span> Male </h3>
+                    <h3> <span> Nationality : </span> Liberian </h3>
+                    <h3> <span> qualification : </span>BCA Degree / BIT Candidate </h3>
+                    <h3> <span> post : </span> Full Stack Developer </h3>
+                    <h3> <span> language : </span> English </h3>
+                    <a href="Updated Resume.pdf" download><button class="btn ripple"> download CV <i class="fas fa-download"></i> </button></a>
+                </div>
+                <div class="counter reveal-right">
+                    <div class="box">
+                        <span class="count-num" data-target="4">0</span><span class="plus">+</span>
+                        <h3>Years Of Experience</h3>
+                    </div>
+
+                    <div class="box">
+                        <span class="count-num" data-target="5">0</span><span class="plus">+</span>
+                        <h3>Porject Completed</h3>
+                    </div>
+
+                    <div class="box">
+                        <span class="count-num" data-target="10">0</span><span class="plus">+</span>
+                        <h3>Happy Clients</h3>
+                    </div>
+
+                    <div class="box">
+                        <span class="count-num" data-target="12">0</span><span class="plus">+</span>
+                        <h3>Certificates</h3>
+                    </div>
+
                 </div>
 
-                <div class="box">
-                    <span>5+</span>
-                    <h3>Porject Completed</h3>
-                </div>
-
-                <div class="box">
-                    <span>10+</span>
-                    <h3>Happy Clients</h3>
-                </div>
-
-                <div class="box">
-                    <span>12+</span>
-                    <h3>Certificates</h3>
-                </div>
-
             </div>
 
-        </div>
+        </section>
 
-    </section>
+        <!-- about section ends -->
 
-    <!-- about section ends -->
+        <!-- education section starts  -->
 
-    <!-- education section starts  -->
+        <section class="education" id="education">
 
-    <section class="education" id="education">
+            <h2 class="heading reveal-up"> My <span>Education</span> </h2>
 
-        <h1 class="heading"> My <span>Education</span> </h1>
+            <div class="edu-slider reveal-up" id="eduSlider" tabindex="0" aria-roledescription="carousel" aria-label="Education and certification timeline">
+                <div class="edu-track" id="eduTrack">
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2021 - 2024</span>
+                        <h3>Reva University</h3>
+                        <p>A Graduate of Computer Applications (BCA), REVA UNIVERSITY, Bangalore India. With vast knowledge on Python & Java,
+                            C Programming language, C++ Object oriented Programming, Oracle SQL & MySQL, Cross Platform Development etc. 2024
+                            Graduating Batch.</p>
+                        <a href="Degree.pdf"><button class="btn ripple"> View Degree Certificate</button></a>
+                    </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Jan-March 2024</span>
+                        <h3>Sonata Software, Bengaluru-India</h3>
+                        <p>JAVA Full Stack Development. Covering JSP, JDBC, Servlets, JAVA Core, MySQL, Swing, Spring Boot, Maven, Hibernate etc. Certificate in JAVA Full Stack Development.</p>
+                        <a href="Java.pdf"><button class="btn ripple"> View Certificate</button></a>
+                    </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2023-2024</span>
+                        <h3>Google Complete Cyber Security Course</h3>
+                        <p>Certificate in Cyber Security from Google. Covering eight certificates, Foundations of
+                            Cybersecurity, Play It Safe: Manage, Security Risks, Connect and Protect: Networks and Network Security, Tools of the Trade: Linux and SQL,
+                            Assets, Threats and Vulnerabilities, Sound the Alarm: Detection and Response, Automate Cybersecurity, Tasks with Python, Put It to Work: Prepare for
+                            Cybersecurity Jobs.</p>
+                            <a href="Coursera GVVYKMD64HZ2_Cyber Security.pdf"><button class="btn ripple"> View Certificate</button></a>
+                    </div>
 
-        <div class="box-container">
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2021 - 2024</span>
-                <h3>Reva University</h3>
-                <p>A Graduate of Computer Applications (BCA), REVA UNIVERSITY, Bangalore India. With vast knowledge on Python & Java,
-                    C Programming language, C++ Object oriented Programming, Oracle SQL & MySQL, Cross Platform Development etc. 2024 
-                    Graduating Batch.</p>
-                <a href="Degree.pdf"><button class="btn"> View Degree Certificate</button></a>
-            </div>
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>Jan-March 2024</span>
-                <h3>Sonata Software, Bengaluru-India</h3>
-                <p>JAVA Full Stack Development. Covering JSP, JDBC, Servlets, JAVA Core, MySQL, Swing, Spring Boot, Maven, Hibernate etc. Certificate in JAVA Full Stack Development.</p>
-                <a href="Java.pdf"><button class="btn"> View Certificate</button></a>
-            </div>
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2023-2024</span>
-                <h3>Google Complete Cyber Security Course</h3>
-                <p>Certificate in Cyber Security from Google. Covering eight certificates, Foundations of
-                    Cybersecurity, Play It Safe: Manage, Security Risks, Connect and Protect: Networks and Network Security, Tools of the Trade: Linux and SQL, 
-                    Assets, Threats and Vulnerabilities, Sound the Alarm: Detection and Response, Automate Cybersecurity, Tasks with Python, Put It to Work: Prepare for
-                    Cybersecurity Jobs.</p>
-                    <a href="Coursera GVVYKMD64HZ2_Cyber Security.pdf"><button class="btn"> View Certificates</button></a>
-            </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2023</span>
+                        <h3>NASSCOM Digital Skilling Initiative- India</h3>
+                        <p>Digital Engineering Certificate. Covering five Technological Disciplines. Artificial Intelligence, Machine Learning, Cyber Security, Data analitics & Cloud Computing.</p>
+                        <a href="Digital engineering.pdf"><button class="btn ripple"> View Certificate</button></a>
+                    </div>
 
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2023</span>
-                <h3>NASSCOM Digital Skilling Initiative- India</h3>
-                <p>Digital Engineering Certificate. Covering five Technological Disciplines. Artificial Intelligence, Machine Learning, Cyber Security, Data analitics & Cloud Computing.</p>
-                <a href="Digital engineering.pdf"><button class="btn"> View Certificate</button></a>
-            </div>
-            
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2021</span>
-                <h3>EthicalByte- India</h3>
-                <p>Certificate in Cyber Security with Emphasis in Ethical Hacking, Level 1</p>
-                <a href="Cyber securityEthicalByte.PDF"><button class="btn"> View Certificate</button></a>
-                
-            </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2021</span>
+                        <h3>EthicalByte- India</h3>
+                        <p>Certificate in Cyber Security with Emphasis in Ethical Hacking, Level 1</p>
+                        <a href="Cyber securityEthicalByte.PDF"><button class="btn ripple"> View Certificate</button></a>
 
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2021</span>
-                <h3>Infosys- India</h3>
-                <p>Certificates in SQL Ensential Training, Introduction to Python, Entity relationship Modeling (ER Models)</p>
-                <a href="SQL.pdf"><button class="btn"> View Certificate</button></a>
-            </div>
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2015 - Present</span>
-                <h3>Starz University</h3>
-                <p>Bachelor of Information Technology (BIT), with Concentration in System Administration.</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-graduation-cap"></i>
-                <span>2013-2014</span>
-                <h3>Bassa High School System, Buchanan-Liberia</h3>
-                <p>High School Diploma, Bassa High School system Buchanan Grand Bassa county Liberia. Primary Education, St. Francis Catholic School, Maryland, Fatima Catholic School, Harper City and St. Peter Catholic School Buchanan Liberia</p>
-                <a href="JEFF Diploma.PDF"><button class="btn"> View Diploma</button></a>
-            </div>
+                    </div>
 
-        </div>
-    </section>
-    <!-- education section ends -->
-    <!-- portfolio section starts  -->
-    <h1 class="heading"> My <span>Portfolio</span> </h1>
-    <section class="portfolio" id="portfolio">
-        <div class="skills">
-            <div class="skill">
-                <div class="skill-name">HTML5</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="90%" style="max-width:90%"></div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2021</span>
+                        <h3>Infosys- India</h3>
+                        <p>Certificates in SQL Ensential Training, Introduction to Python, Entity relationship Modeling (ER Models)</p>
+                        <a href="SQL.pdf"><button class="btn ripple"> View Diploma</button></a>
+                    </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2015 - Present</span>
+                        <h3>Starz University</h3>
+                        <p>Bachelor of Information Technology (BIT), with Concentration in System Administration.</p>
+                    </div>
+                    <div class="edu-slide">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>2013-2014</span>
+                        <h3>Bassa High School System, Buchanan-Liberia</h3>
+                        <p>High School Diploma, Bassa High School system Buchanan Grand Bassa county Liberia. Primary Education, St. Francis Catholic School, Maryland, Fatima Catholic School, Harper City and St. Peter Catholic School Buchanan Liberia</p>
+                        <a href="JEFF Diploma.PDF"><button class="btn ripple"> View Diploma</button></a>
+                    </div>
                 </div>
             </div>
-            <div class="skill">
-                <div class="skill-name">CSS3</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="75%" style="max-width:75%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">JavaScript</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="60%" style="max-width:60%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">WORDPRESS</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="70%" style="max-width:70%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">C</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="87%" style="max-width:87%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">C++</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="60%" style="max-width:60%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">JAVA</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="75%" style="max-width:75%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">PYTHON</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="75%" style="max-width:75%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">PHP / MySQL</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="80%" style="max-width:80%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">Ruby and R</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="50%" style="max-width:50%"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">Cyber Security</div>
-                <div class="skill-bar">
-                    <div class="skill-per" per="75%" style="max-width:75%"></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- portfolio section ends -->
+            <div class="slider-controls">
+                <button class="slider-arrow prev" id="eduPrev" aria-label="Previous certification"><i class="fas fa-chevron-left"></i></button>
+                <div class="slider-dots" id="eduDots"></div>
+                <button class="slider-arrow next" id="eduNext" aria-label="Next certification"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+        <!-- education section ends -->
+        <!-- portfolio section starts  -->
+        <section class="portfolio" id="portfolio">
 
-    <!-- contact section starts  -->
+            <h2 class="heading reveal-up"> My <span>Portfolio</span> </h2>
 
-    <section class="contact" id="contact">
-
-        <h1 class="heading"> <span>contact</span> me </h1>
-
-        <div class="row">
-            <div class="content">
-                <h3 class="title">contact info</h3>
-                <div class="info">
-                    <h3> <i class="fas fa-envelope"></i> jeffersonyarbah@gmail.com </h3>
-                    <h3> <i class="fas fa-phone"></i> +231-773-827-569 </h3>
-                    <h3> <i class="fas fa-phone"></i> +231-887-632-590 </h3>
-                    <h3> <i class="fas fa-map-marker-alt"></i> Duport Road, Paynesville City, Liberia- 1000. </h3>
+            <div class="tech-marquee" aria-hidden="true">
+                <div class="tech-marquee-track">
+                    <span><i class="fab fa-html5"></i>HTML5</span>
+                    <span><i class="fab fa-css3-alt"></i>CSS3</span>
+                    <span><i class="fab fa-js-square"></i>JavaScript</span>
+                    <span><i class="fab fa-wordpress"></i>WordPress</span>
+                    <span><i class="fas fa-code"></i>C</span>
+                    <span><i class="fas fa-code"></i>C++</span>
+                    <span><i class="fab fa-java"></i>Java</span>
+                    <span><i class="fab fa-python"></i>Python</span>
+                    <span><i class="fab fa-php"></i>PHP / MySQL</span>
+                    <span><i class="fas fa-gem"></i>Ruby &amp; R</span>
+                    <span><i class="fas fa-shield-halved"></i>Cyber Security</span>
+                    <span><i class="fab fa-html5"></i>HTML5</span>
+                    <span><i class="fab fa-css3-alt"></i>CSS3</span>
+                    <span><i class="fab fa-js-square"></i>JavaScript</span>
+                    <span><i class="fab fa-wordpress"></i>WordPress</span>
+                    <span><i class="fas fa-code"></i>C</span>
+                    <span><i class="fas fa-code"></i>C++</span>
+                    <span><i class="fab fa-java"></i>Java</span>
+                    <span><i class="fab fa-python"></i>Python</span>
+                    <span><i class="fab fa-php"></i>PHP / MySQL</span>
+                    <span><i class="fas fa-gem"></i>Ruby &amp; R</span>
+                    <span><i class="fas fa-shield-halved"></i>Cyber Security</span>
                 </div>
-                <form action="https://formsubmit.co/jeffersonyarbah123@gmail.com" method="POST">
-                    <input type="text" placeholder="name" class="box">
-                    <input type="email" placeholder="email" class="box">
-                    <input type="text" placeholder="mobile no." class="box">
-                    <textarea name="" id="" cols="30" rows="10" class="box message" placeholder="message"></textarea>
-                    <button type="submit" class="btn"> Submit <i class="fas fa-paper-plane"></i> </button>
+            </div>
+
+            <div class="skills">
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-html5" aria-hidden="true"></i>
+                        <div class="skill-name">HTML5</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="90"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-css3-alt" aria-hidden="true"></i>
+                        <div class="skill-name">CSS3</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="75"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-js-square" aria-hidden="true"></i>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="60"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-wordpress" aria-hidden="true"></i>
+                        <div class="skill-name">WORDPRESS</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="70"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        <div class="skill-name">C</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="87"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fas fa-code" aria-hidden="true"></i>
+                        <div class="skill-name">C++</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="60"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-java" aria-hidden="true"></i>
+                        <div class="skill-name">JAVA</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="75"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-python" aria-hidden="true"></i>
+                        <div class="skill-name">PYTHON</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="75"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fab fa-php" aria-hidden="true"></i>
+                        <div class="skill-name">PHP / MySQL</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="80"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fas fa-gem" aria-hidden="true"></i>
+                        <div class="skill-name">Ruby and R</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="50"></div>
+                    </div>
+                </div>
+                <div class="skill reveal-up">
+                    <div class="skill-top">
+                        <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                        <div class="skill-name">Cyber Security</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-per" data-per="75"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- portfolio section ends -->
+
+        <!-- contact section starts  -->
+
+        <section class="contact" id="contact">
+
+            <h2 class="heading reveal-up"> <span>contact</span> me </h2>
+
+            <div class="row">
+                <div class="content reveal-left">
+                    <h3 class="title">contact info</h3>
+                    <div class="info">
+                        <h3> <a href="mailto:jeffersonyarbah@gmail.com"><i class="fas fa-envelope"></i> jeffersonyarbah@gmail.com</a> </h3>
+                        <h3> <a href="tel:+231773827569"><i class="fas fa-phone"></i> +231-773-827-569</a> </h3>
+                        <h3> <a href="tel:+231887632590"><i class="fas fa-phone"></i> +231-887-632-590</a> </h3>
+                        <h3> <i class="fas fa-map-marker-alt"></i> Duport Road, Paynesville City, Liberia- 1000. </h3>
+                    </div>
+                </div>
+
+                <form action="https://formsubmit.co/jeffersonyarbah123@gmail.com" method="POST" class="reveal-right" id="contactForm" novalidate>
+                    <input type="hidden" name="_subject" value="New portfolio contact message">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+
+                    <div class="field">
+                        <input type="text" placeholder=" " id="cf-name" name="name" class="box" required minlength="2" autocomplete="name">
+                        <label for="cf-name">Name</label>
+                        <span class="field-error">Please enter your name.</span>
+                    </div>
+
+                    <div class="field">
+                        <input type="email" placeholder=" " id="cf-email" name="email" class="box" required autocomplete="email">
+                        <label for="cf-email">Email</label>
+                        <span class="field-error">Please enter a valid email.</span>
+                    </div>
+
+                    <div class="field">
+                        <input type="tel" placeholder=" " id="cf-phone" name="mobile no." class="box" pattern="^[0-9+\-\s()]{7,}$" autocomplete="tel">
+                        <label for="cf-phone">Mobile No.</label>
+                        <span class="field-error">Please enter a valid phone number.</span>
+                    </div>
+
+                    <div class="field">
+                        <textarea id="cf-message" name="message" cols="30" rows="10" class="box message" placeholder=" " required minlength="10"></textarea>
+                        <label for="cf-message">Message</label>
+                        <span class="field-error">Please enter a message (min. 10 characters).</span>
+                    </div>
+
+                    <button type="submit" class="btn ripple submit-btn">
+                        <span class="btn-text">Submit <i class="fas fa-paper-plane"></i></span>
+                        <span class="btn-loader" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                        <i class="fas fa-circle-check"></i>
+                        <p>Thank you! Your message has been sent — I'll get back to you soon.</p>
+                    </div>
                 </form>
 
             </div>
 
-            <!-- Portfolio Section -->
+        </section>
 
-            <!-- contact section ends -->
+        <!-- contact section ends -->
 
+    </main>
 
-            <!-- scroll top button  -->
+    <!-- footer starts -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <h3>Jefferson T. Yarbah</h3>
+                <p>Full Stack Developer</p>
+            </div>
 
-            <a href="#home" class="top">
-                <img src="images/scroll-top-img.png" alt="">
-            </a>
-            <!-- jquery cdn link  -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <ul class="footer-social" aria-label="Contact links">
+                <li><a href="mailto:jeffersonyarbah@gmail.com" aria-label="Email Jefferson"><i class="fas fa-envelope"></i></a></li>
+                <li><a href="tel:+231773827569" aria-label="Call Jefferson"><i class="fas fa-phone"></i></a></li>
+                <li><a href="#home" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a></li>
+            </ul>
 
-            <!-- custom js file link  -->
-            <script src="script.js"></script>
+            <p class="footer-copy">&copy; <span id="year"></span> Jefferson T. Yarbah. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- footer ends -->
+
+    <!-- scroll top button  -->
+    <a href="#home" class="top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- custom animated cursor (desktop only, added by JS when supported) -->
+    <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+    <!-- custom js file link (vanilla ES6+, no jQuery dependency) -->
+    <script src="script.js" defer></script>
 
 </body>
 
